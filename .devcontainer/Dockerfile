@@ -30,7 +30,8 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libosgearth-dev \
     wget \
-    sudo
+    sudo \
+    gdb
 
 # Set environment variables for OMNeT++
 ENV PATH="$OMNETPP_HOME/bin:$PATH"
