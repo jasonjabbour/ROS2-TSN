@@ -3,7 +3,8 @@
 ## Commands
 
 ```bash
-
+# Source Environment
+source /opt/omnetpp/setenv
 # To start the OMNeT++ IDE
 omnetpp
 

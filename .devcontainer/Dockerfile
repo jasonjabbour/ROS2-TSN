@@ -30,17 +30,29 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libosgearth-dev \
     wget \
-    sudo
+    sudo \
+    gdb \ 
+    python3-pip
+
+# Install required Python modules
+RUN pip install numpy scipy pandas matplotlib posix_ipc
 
 # Set environment variables for OMNeT++
 ENV PATH="$OMNETPP_HOME/bin:$PATH"
 
-# Download and install OMNeT++
-RUN wget -O omnetpp.tar.gz https://github.com/omnetpp/omnetpp/releases/download/omnetpp-5.6.2/omnetpp-5.6.2-src-linux.tgz && \
-    tar -xzf omnetpp.tar.gz --strip-components=1 && \
-    ./configure WITH_OSGEARTH=FALSE WITH_OSG=FALSE && \
-    make
+# # Download and install OMNeT++ 5.6.2
+# RUN wget -O omnetpp.tar.gz https://github.com/omnetpp/omnetpp/releases/download/omnetpp-5.6.2/omnetpp-5.6.2-src-linux.tgz && \
+#     tar -xzf omnetpp.tar.gz --strip-components=1 && \
+#     ./configure WITH_OSGEARTH=FALSE WITH_OSG=FALSE && \
+#     make
 
+# Download, extract, configure, and install OMNeT++ 6.0.3
+RUN wget -O omnetpp.tar.gz https://github.com/omnetpp/omnetpp/releases/download/omnetpp-6.0.3/omnetpp-6.0.3-linux-x86_64.tgz && \
+    tar -xzf omnetpp.tar.gz --strip-components=1 && \
+    /bin/bash -c "source setenv && ./configure WITH_OSGEARTH=FALSE WITH_OSG=FALSE" && \
+    sed -i '/install-shortcuts/d' Makefile && \
+    make
+    
 # Add your application's bin directory to the PATH
 ENV PATH="/tmp/ROS2_TSN_ws/bin:$PATH"
 
