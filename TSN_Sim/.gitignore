@@ -1,2 +1,13 @@
+# Eclipse-specific files
 /.metadata/
+
+# OMNeT++ build artifacts
+/out/
+/*/out/
+**/out/*
+**/results/*
+ROS2_TSN_Bridge*
+*_dbg
+
+# INET framework specific
 /inet4.5/

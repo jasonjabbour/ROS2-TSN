@@ -1,4 +1,0 @@
-#!/bin/sh
-cd `dirname $0`
-../src/ros_tsn_bridge -n .:../src $*
-# for shared lib, use: opp_run -l ../src/ros_tsn_bridge -n .:../src $*
