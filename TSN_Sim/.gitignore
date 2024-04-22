@@ -6,7 +6,7 @@
 /*/out/
 **/out/*
 **/results/*
-ROS2_TSN_Bridge*
+/src/ROS2_TSN_Bridge
 *_dbg
 
 # INET framework specific
